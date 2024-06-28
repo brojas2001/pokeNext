@@ -1,3 +1,4 @@
-export default function Page() {
-    return <p>ESTA PAGINA ES EL CONTENIDO DEL DASHBOARD</p>
+export default function CustomersPage() {
+    return <p>Clientes</p>
+    
 }
