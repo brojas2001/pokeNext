@@ -13,6 +13,7 @@ interface pokemonesProps{
     
 };
 
+
 interface detallePokemonProps {
   forms:{
       name: string,
@@ -39,7 +40,7 @@ export default function CardList ({ pokemones: pokemones }: pokemonesProps) {
       pokemones.map((pokemon:pokemonesProps) => 
         (<Card 
           key={pokemon.id} 
-          pokemon={pokemon} 
+          pokemon={pokemon}
           />))
   }
     </div>

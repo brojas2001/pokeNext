@@ -1,12 +1,7 @@
-.card-list{
+.card-list {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    border-radius: 5px;
-    padding: 25px;
-}
-
-
-.card-container {
-    transform: scale(1.05);
-}
+    padding: 2px;
+    margin: 4px;
+  }

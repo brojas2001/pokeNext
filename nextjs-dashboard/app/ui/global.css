@@ -2,7 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-p {
-  font-size: 20px;
-  text-align: justify;
-}

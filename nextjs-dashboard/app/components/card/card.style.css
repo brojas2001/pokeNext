@@ -1,0 +1,8 @@
+.card-container {
+    cursor: pointer;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+    margin: 50px;
+    align-self: center;
+} 
+

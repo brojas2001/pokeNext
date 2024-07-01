@@ -1,6 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react'
+// import './page.css'
 import Cardlist from '@/app/components/card-list/card-list.component';
+
+
 // import './App.css'
 // import { SearchBox } from './app/components/search-box/search-box.component.jsx'
 // import Pagination from '@mui/material/Pagination';
@@ -49,40 +52,41 @@ const App = () => {
       })
   }, [])
 
-  // useEffect(() => {
-  //   fetch('https://pokeapi.co/api/v2/type/')
-  //     .then(response => response.json())
-  //     .then((data: pokemonTypeProps) => {
-  //       const requests = data.results.map(result => fetch(result.url));
+  useEffect(() => {
+    fetch('https://pokeapi.co/api/v2/type/')
+      .then(response => response.json())
+      .then((data: pokemonTypeProps) => {
+        const requests = data.results.map(result => fetch(result.url));
 
-  //       Promise.all(requests)
-  //         .then(responses => {
-  //           return Promise.all(responses.map(res => res.json()));
-  //         })
-  //         .then((data: pokemonDetallesTypeProps) => {
-  //           setTypes(data);
-  //         })
-  //     })
-  // }, [])
+        Promise.all(requests)
+          .then(responses => {
+            return Promise.all(responses.map(res => res.json()));
+          })
+          .then((data: pokemonDetallesTypeProps) => {
+            setTypes("types" ,data);
+          })
+      })
+  }, [])
 
   const pokemonesFiltered = pokemones?.results?.filter(pokemon =>
     pokemon.name.toLowerCase().includes(searchField.toLowerCase())
   ) ?? []
   console.log(pokemonesFiltered)
 
-  // const buscaTipoEnEspanol = (tipo) =>types.find(type => type.name ===tipo).names.find(lang=> lang.language.name ==="es").name
+  const buscaTipoEnEspanol = (tipo) =>types.find(type => type.name ===tipo).names.find(lang=> lang.language.name ==="es").name
 
 
 
   return (
+    
     <div className='App'>
-      <h1>Pokemones</h1>
+      <h1 className='text-[80px] text-center'>Pokemones</h1>
       {/* <h2>{pokemones}</h2> */}
       {/* <SearchBox
         placeholder='search pokemon'
         handleChange={e => setSearchField(e.target.value)}
       /> */}
-      <Cardlist pokemones={pokemonesFiltered}/>
+      <Cardlist pokemones={pokemonesFiltered} buscaTipoEnEspanol={buscaTipoEnEspanol}/>
 
       {/* <Pagination count={pages } page={currentPage} onChange={(e,page) => {setOffset((page-1) * limit)}}/> */}
     </div>
