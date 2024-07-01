@@ -42,8 +42,9 @@ const Card = ({pokemon, buscaTipoEnEspanol}) => {
   const [detalleEspecie, setDetalleEspecie] = useState(undefined)
   const [open, setOpen] = React.useState(false)
 
-  const alertaDetallePokemon = () => {
-    alert(detallePokemon.name)}
+
+
+
 
   useEffect(() => {
       fetch(pokemon.url)
@@ -75,29 +76,15 @@ const Card = ({pokemon, buscaTipoEnEspanol}) => {
         <div >
           <h1 className='text-[40px] capitalize text-center'>{pokemon.name}</h1>
           <img className='w-[200px] h-[200px]' src={detallePokemon.sprites.versions['generation-v']['black-white'].front_default} />
-         
         </div>
+
         <div>
-          <button className='absolute -right-3 font-bold -bottom-5 w-[132px] h-[48px] bg-[#ff7675]  rounded-full text-white' onClick={alertaDetallePokemon}>Detalles</button>
+            <button className='absolute -right-3 font-bold -bottom-5 w-[132px] h-[48px] bg-[#ff7675]  rounded-full text-white' >Detalles</button>
         </div>
        
       </article>
     </section>
-
-
-    {/* <div className='types-container-card'>
-      {detallePokemon.types.map((type) => (
-      <p className='types-container-card'
-      style={{
-              color: 'white',
-              borderRadius: '15px',
-              padding: '8px',
-              width: 'fit-content'
-              }}>
-      {buscaTipoEnEspanol(type.type.name)}
-      </p>
-      ))}
-        </div> */}
+    
        
   </>
 )
