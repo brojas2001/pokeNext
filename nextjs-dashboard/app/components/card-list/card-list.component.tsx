@@ -33,7 +33,7 @@ interface detallePokemonProps {
   weight: number
 };
 
-export default function CardList ({ pokemones: pokemones }: pokemonesProps) {
+export default function CardList ({pokemones: pokemones }: pokemonesProps) {
 
   return (
     <div className='card-list'>{

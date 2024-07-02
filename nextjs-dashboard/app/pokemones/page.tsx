@@ -2,13 +2,12 @@
 import React, { useState, useEffect } from 'react'
 // import './page.css'
 import Cardlist from '@/app/components/card-list/card-list.component';
-
-
-// import './App.css'
+import Paginacion from '@/app/components/paginacion/paginacion';
 // import { SearchBox } from './app/components/search-box/search-box.component.jsx'
-// import Pagination from '@mui/material/Pagination';
+
 
 interface pokemonProps {
+  count: number;
   results:{
     name: string;
     url: string;
@@ -31,24 +30,29 @@ interface pokemonDetalleTypeProps {
 
 
 const App = () => {
-  // const [offset, setOffset] = useState(0);
-  // const [limit, setLimit] = useState(9);
-  // const [count, setCount] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(9);
+  const [count, setCount] = useState(0);
 
-  // const currentPage = offset / limit +1
+  const currentPage = offset / limit +1
 
-  // const pages = Math.floor(count / limit) + 1
+  const pages = Math.floor(count / limit) + 1
   const [pokemones, setPokemones] = useState(undefined)
   const [types, setTypes] = useState(undefined)
   const [searchField, setSearchField] = useState('')
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/`)
+    fetch(
+      offset === 144 ?
+      `https://pokeapi.co/api/v2/pokemon/?limit=${limit-2}&offset=${offset}`
+
+       :`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
+    )
       .then(response => response.json())
       .then((data: pokemonProps) => {
         console.log(data)
         setPokemones(data);
-        // setCount(data.count)
+        setCount(data.count)
       })
   }, [])
 
@@ -62,8 +66,9 @@ const App = () => {
           .then(responses => {
             return Promise.all(responses.map(res => res.json()));
           })
-          .then((data: pokemonDetallesTypeProps) => {
-            setTypes("types" ,data);
+          .then((data: pokemonDetalleTypeProps) => {
+            console.log("types ", data)
+            setTypes(data);
           })
       })
   }, [])
@@ -81,12 +86,12 @@ const App = () => {
     
     <div className='App'>
       <h1 className='text-[80px] text-center'>Pokemones</h1>
-      {/* <h2>{pokemones}</h2> */}
       {/* <SearchBox
         placeholder='search pokemon'
         handleChange={e => setSearchField(e.target.value)}
       /> */}
-      <Cardlist pokemones={pokemonesFiltered} buscaTipoEnEspanol={buscaTipoEnEspanol}/>
+      <Cardlist pokemones={pokemonesFiltered}/>
+      <Paginacion count={pages } page={currentPage} onChange={(e,page) => {setOffset((page-1) * limit)}}/>
 
       {/* <Pagination count={pages } page={currentPage} onChange={(e,page) => {setOffset((page-1) * limit)}}/> */}
     </div>
