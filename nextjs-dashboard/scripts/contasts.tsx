@@ -1,3 +1,25 @@
+interface colorProps {
+  Normal: string 
+  Fuego: string
+  Agua: string
+  Eléctrico:string
+  Planta: string
+  Hielo: string
+  Lucha: string
+  Veneno:string
+  Tierra: string
+  Volador: string
+  Psíquico: string
+  Bicho: string
+  Roca: string
+  Fantasma: string
+  Dragón: string
+  Acero: string
+  Hada:string
+
+}
+
+
 export const colours = {
     Normal: '#A8A77A',
     Fuego: '#EE8130',

@@ -1,18 +1,13 @@
 'use client'
 import {
-  UserGroupIcon,
-  HomeIcon,
-  DocumentDuplicateIcon,
+  FaceSmileIcon
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import  {usePathname} from 'next/navigation';
 
-
-// Map of links to display in the side navigation.
-// Depending on the size of the application, this would be stored in a database.
 const links = [
 
-  { name: 'Pokemones', href: '/pokemones', icon: UserGroupIcon },
+  { name: 'Pokemones', href: '/pokemones', icon: 'FaceSmileIcon' },
 ];
 
 export default function NavLinks() {

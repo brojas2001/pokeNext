@@ -32,8 +32,8 @@ interface detallePokemonProps {
   height: number,
   weight: number
 };
-
-export default function CardList ({pokemones: pokemones }: pokemonesProps) {
+export default function CardList ({pokemones, buscaTipoEnEspanol}: {pokemones, buscaTipoEnEspanol}) {
+// export default function CardList ({pokemones: pokemones }: pokemonesProps) {
 
   return (
     <div className='card-list'>{
@@ -41,6 +41,7 @@ export default function CardList ({pokemones: pokemones }: pokemonesProps) {
         (<Card 
           key={pokemon.id} 
           pokemon={pokemon}
+          buscaTipoEnEspanol={buscaTipoEnEspanol}
           />))
   }
     </div>
