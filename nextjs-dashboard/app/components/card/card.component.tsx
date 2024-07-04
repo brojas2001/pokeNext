@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import './card.style.css'
-import { indieFlower, margarine, rubikBubbles, dosis } from '@/app/ui/font'
+import { indieFlower, margarine, rubikBubbles } from '@/app/ui/font'
 import { colours } from '@/scripts/contasts'
-import { Container } from 'postcss'
-
-
-
-// import Modal from '@/scripts/Modal'
-
 
 interface detallePokemonProps {
     forms:{
@@ -55,22 +49,16 @@ interface detallePokedexProps {
       }
     }
   }
-  interface pokemonTypeProps {
-    name: string;
-    url: string;
-  }
-  interface pokemonDetalleTypeProps {
-    name: string;
-    names: {
-     language: {
-       name: string;
-     }
-    }
-  }
   
-  
+interface Props {
+  pokemon: detallePokemonProps;
+  buscaTipoEnEspanol: (tipo: detallePokemonProps) => any
+}
          
-const Card = ({pokemon, buscaTipoEnEspanol}:{pokemon: detallePokemonProps}) => {
+const Card: FC<Props> = ({
+  pokemon,
+  buscaTipoEnEspanol,
+  }) => {
   const [detallePokemon, setDetallePokemon] = useState(undefined)
   const [detalleEspecie, setDetalleEspecie] = useState(undefined)
   const [detallePokeDex, setDetallePokeDex] = useState(undefined)
@@ -120,7 +108,7 @@ const Card = ({pokemon, buscaTipoEnEspanol}:{pokemon: detallePokemonProps}) => {
   const pokeDexTextEs = detallePokeDex?.descriptions.find(
     (des) => des.language.name === 'es').description
   
-
+  console.log(buscaTipoEnEspanol(detallePokemon.types[0].type.name).toLowerCase())
   
   return (
     <>
@@ -131,12 +119,16 @@ const Card = ({pokemon, buscaTipoEnEspanol}:{pokemon: detallePokemonProps}) => {
           <h1 className= {`${margarine.className} absolute inset-x-0 top-1 left-1  p-[2px] text-[30px] rounded-full bg-[#ffeaa7] w-[60px] h-[60px]`}>#{detallePokemon.id}</h1>
           <img className='w-[150px] h-[150px] p-[4px]' src={detallePokemon.sprites.versions['generation-v']['black-white'].animated.front_default} /> 
         </div>
-{/*         
+        
           {detallePokemon.types.map((type) => (
+            <div className={`bg-${buscaTipoEnEspanol(type.type.name).toLowerCase()}`}>
+
             <p
-            className={`bg-${colours[buscaTipoEnEspanol(type.type.name)]} text-black p-[8px]`}>
-              {buscaTipoEnEspanol(type.type.name)}</p>))}
-           */}
+            className={` text-black p-[8px]`}>
+              {buscaTipoEnEspanol(type.type.name).toLowerCase()}</p>
+              </div>
+            ))}
+           
 
         <div>
           <button onClick={() => setShowModal(true)}  className="absolute -right-3 font-bold -bottom-5 w-[132px] h-[48px] bg-[#ff7675]  rounded-full text-white transition-colors hover:bg-[#74b9ff]">

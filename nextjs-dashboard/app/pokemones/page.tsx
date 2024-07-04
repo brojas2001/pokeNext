@@ -87,10 +87,11 @@ const App = () => {
   ) ?? []
   console.log(pokemonesFiltered)
 
-  const buscaTipoEnEspanol = (tipo:detallePokemonProps) =>{
-    types.find(type => type.name ===tipo).names.find(lang=> lang.language.name ==="es").name}
+  const buscaTipoEnEspanol = (tipo:detallePokemonProps) => {
+    return types.find(type => type.name ===tipo).names.find(lang=> lang.language.name ==="es").name ?? ''
+  }
   
-  
+
 
   return (
     
@@ -114,11 +115,7 @@ const App = () => {
         </div>
 
         <Cardlist pokemones={pokemonesFiltered} buscaTipoEnEspanol={buscaTipoEnEspanol}/>
-
         <Paginacion count={pages} page={currentPage} onChange={(e,page) => {setOffset((page-1) * limit)}}></Paginacion>
-        
-
-      {/* <Pagination count={pages } page={currentPage} onChange={(e,page) => {setOffset((page-1) * limit)}}/> */}
     </main>
   )
 }

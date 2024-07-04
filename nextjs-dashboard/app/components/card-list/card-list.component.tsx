@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import './card-list.style.css'
 import Card from '../card/card.component'
 
@@ -32,9 +32,16 @@ interface detallePokemonProps {
   height: number,
   weight: number
 };
-export default function CardList ({pokemones, buscaTipoEnEspanol}: {pokemones, buscaTipoEnEspanol}) {
-// export default function CardList ({pokemones: pokemones }: pokemonesProps) {
 
+
+interface Props {
+  pokemones: detallePokemonProps[];
+}
+
+const CardList: FC<Props> = ({
+  pokemones,
+  buscaTipoEnEspanol,
+}) => {
   return (
     <div className='card-list'>{
       pokemones.map((pokemon:pokemonesProps) => 
@@ -47,3 +54,5 @@ export default function CardList ({pokemones, buscaTipoEnEspanol}: {pokemones, b
     </div>
   )
 }
+
+export default CardList
