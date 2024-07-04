@@ -43,11 +43,10 @@ const App = () => {
   const currentPage = offset / limit + 1;
   const pages = Math.floor(count / limit) + 1;
 
-
   const [pokemones, setPokemones] = useState(undefined);
   const [types, setTypes] = useState(undefined);
   const [searchField, setSearchField] = useState("");
-  
+
   useEffect(() => {
     fetch(
       offset === 144
@@ -86,53 +85,39 @@ const App = () => {
   console.log(pokemonesFiltered);
 
   const buscaTipoEnEspanol = (tipo: detallePokemonProps) => {
+    if (!types) return "";
     return types
       .find((type) => type.name === tipo)
       .names.find((lang) => lang.language.name === "es").name;
   };
 
   return (
-    <main className="flex min-h-full flex-col p-6 items-center">
-      <h1 className="text-[80px] text-center">Pokemones</h1>
+    <main className="flex flex-col p-6 items-center bg-white w-full">
+      <h1 className="s:text-[40px] text-center font-bold m:text-[40px] text-center font-bold mss:text-[60px] text-center font-bold">
+        Pokemones
+      </h1>
       <Link
         href="/"
-        className="flex items-center gap-5 self-start px-3 py-2 font-medium text-white bg-[#d63031]  rounded-full capitalize"
+        className="flex items-center gap-5 self-start px-3 py-2 font-medium text-white bg-[#ff793f]  rounded-full capitalize"
       >
-        <span className="text-[15px] font-bold">pagina inicio</span>
+        <span className="text-[15px] font-bold">Volver</span>
       </Link>
       <SearchBox
         placeholder="Buscar"
         handleChange={(e) => setSearchField(e.target.value)}
       />
 
-      <div className="flex">
-        <svg
-          className="w-5 flex flex-row left-8 size-6"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-          />
-        </svg>
-      </div>
-
       <Cardlist
         pokemones={pokemonesFiltered}
         buscaTipoEnEspanol={buscaTipoEnEspanol}
       />
-      <Paginacion
+      {/* <Paginacion
         pages={pages}
         currentPage={currentPage}
         onChange={(page) => {
           setOffset((page - 1) * limit);
         }}
-      ></Paginacion>
+      ></Paginacion> */}
     </main>
   );
 };

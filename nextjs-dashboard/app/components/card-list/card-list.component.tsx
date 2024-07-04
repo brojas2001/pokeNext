@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import "./card-list.style.css";
 import Card from "../card/card.component";
 
 export interface detallePokemonProps {
@@ -30,7 +29,7 @@ interface Props {
 
 const CardList: FC<Props> = ({ pokemones, buscaTipoEnEspanol }) => {
   return (
-    <div className="card-list">
+    <div className="w-[90%] h-[60%] justify-center flex flex-wrap">
       {pokemones.map((pokemon) => (
         <Card
           key={pokemon.id}
