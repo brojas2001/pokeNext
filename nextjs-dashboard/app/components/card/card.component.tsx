@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import "./card.style.css";
-import { indieFlower, margarine, rubikBubbles } from "@/app/ui/font";
+import { indieFlower, margarine, silkscreen } from "@/app/ui/font";
 import { detallePokemonProps } from "../card-list/card-list.component";
 // import { colorProps, colours } from "@/scripts/contasts";
 
@@ -88,11 +88,11 @@ const Card: FC<Props> = ({ pokemon, buscaTipoEnEspanol, colours }) => {
 
   return (
     <>
-      <section className="bg-gray-100 flex flex-wrap gap-4">
-        <article className="relative rounded-3xl bg-[#0984e3] justify-center gap-4 m-[15px] h-[320px] hover:bg-[#ff5252] transition-colors duration-300 ease-in-out sm:w-[90%] m:w-[250px] mss:w-[400px]">
-          <div>
+      <section className="bg-gray-100 flex flex-wrap gap-[4px]">
+        <article className="relative rounded-3xl bg-[#0984e3] p-[8px] gap-4 m-[20px] hover:bg-[#ff5252] transition-colors duration-300 ease-in-out min-w-[90%] m:w-[250px]  mss:w-[400px]">
+          <div className="w-[100%]">
             <h1
-              className={`${margarine.className} capitalize text-[40px] text-center rounded-full text-blue-200 p-4 md:text-center `}
+              className={`${margarine.className} capitalize text-[20px] text-center rounded-full text-blue-200 p-4`}
             >
               {detallePokemon.name}
             </h1>
@@ -167,7 +167,7 @@ const Card: FC<Props> = ({ pokemon, buscaTipoEnEspanol, colours }) => {
                     {detallePokemon.name}
                   </div>
                   <div
-                    className={`${indieFlower.className} antialiased text-center text-white text-[25px]`}
+                    className={`${indieFlower.className} antialiased text-center text-white text-[30px]`}
                   >
                     <h2>{generaTextEs}</h2>
                   </div>
@@ -198,7 +198,7 @@ const Card: FC<Props> = ({ pokemon, buscaTipoEnEspanol, colours }) => {
                       {detallePokemon.types.map((type) => (
                         <div>
                           <p
-                            className={`text-white m-4 text-center capitalize ${indieFlower.className} antialiased text-[25px] `}
+                            className={`text-white m-4 text-center capitalize ${silkscreen.className} antialiased text-[20px] `}
                           >
                             {buscaTipoEnEspanol(type.type.name).toLowerCase()}
                           </p>
