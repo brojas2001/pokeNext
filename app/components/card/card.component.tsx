@@ -69,7 +69,7 @@ const Card: FC<Props> = ({ pokemon, buscaTipoEnEspanol }) => {
     }
   }, [detalleEspecie]);
 
-  if (!detallePokemon || !detalleEspecie ) {
+  if (!detallePokemon || !detalleEspecie) {
     return <h1>cargando</h1>;
   }
 
@@ -115,7 +115,7 @@ const Card: FC<Props> = ({ pokemon, buscaTipoEnEspanol }) => {
             {detallePokemon.types.map((type: any) => (
               <div>
                 <p
-                  className={`text-white m-4 text-center font-bold capitalize antialiased text-[20px] 
+                  className={`text-white m-4 p-4 text-center font-bold capitalize antialiased text-[20px] 
                   rounded-full w-[120px] ${margarine.className}`}
                 >
                   {buscaTipoEnEspanol(type.type.name).toLowerCase()}
