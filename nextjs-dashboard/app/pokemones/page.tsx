@@ -111,13 +111,13 @@ const App = () => {
         pokemones={pokemonesFiltered}
         buscaTipoEnEspanol={buscaTipoEnEspanol}
       />
-      {/* <Paginacion
+      <Paginacion
         pages={pages}
         currentPage={currentPage}
         onChange={(page) => {
           setOffset((page - 1) * limit);
         }}
-      ></Paginacion> */}
+      />
     </main>
   );
 };

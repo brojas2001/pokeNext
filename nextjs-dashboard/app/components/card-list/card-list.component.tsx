@@ -29,7 +29,7 @@ interface Props {
 
 const CardList: FC<Props> = ({ pokemones, buscaTipoEnEspanol }) => {
   return (
-    <div className="min-w-[90%] justify-center flex flex-col">
+    <div className="min-w-[90%] justify-center flex m:flex-row m:flex-wrap flex-col">
       {pokemones.map((pokemon) => (
         <Card
           key={pokemon.id}
