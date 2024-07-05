@@ -3,6 +3,7 @@ import Card from "../card/card.component";
 
 export interface detallePokemonProps {
   id: number;
+  name: string;
   forms: {
     name: string;
     url: string;
@@ -16,6 +17,9 @@ export interface detallePokemonProps {
   species: {
     name: string;
     url: string;
+  };
+  sprites: {
+    versions: any;
   };
   height: number;
   weight: number;

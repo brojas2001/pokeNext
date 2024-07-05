@@ -1,9 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import "./card.style.css";
-import { indieFlower, margarine, silkscreen } from "@/app/ui/font";
+import { margarine } from "@/app/ui/font";
 import { detallePokemonProps } from "../card-list/card-list.component";
 import ModalDetallePokemon from "./modal.component";
-// import { colorProps, colours } from "@/scripts/contasts";
 
 interface detalleEspecieProps {
   flavor_text_entries: {
@@ -12,14 +11,14 @@ interface detalleEspecieProps {
       name: string;
       url: string;
     };
-    pokedex_numbers: {
-      entry_number: number;
-      pokedex: {
-        name: string;
-        url: string;
-      };
+  }[];
+  pokedex_numbers: {
+    entry_number: number;
+    pokedex: {
+      name: string;
+      url: string;
     };
-  };
+  }[];
 }
 interface detallePokedexProps {
   descriptions: {
@@ -34,13 +33,12 @@ interface detallePokedexProps {
 interface Props {
   pokemon: detallePokemonProps;
   buscaTipoEnEspanol: (tipo: detallePokemonProps) => any;
-  colours: colorProps;
 }
 
-const Card: FC<Props> = ({ pokemon, buscaTipoEnEspanol, colours }) => {
-  const [detallePokemon, setDetallePokemon] = useState(undefined);
-  const [detalleEspecie, setDetalleEspecie] = useState(undefined);
-  const [detallePokeDex, setDetallePokeDex] = useState(undefined);
+const Card: FC<Props> = ({ pokemon, buscaTipoEnEspanol }) => {
+  const [detallePokemon, setDetallePokemon] = useState<any>(undefined);
+  const [detalleEspecie, setDetalleEspecie] = useState<any>(undefined);
+  const [detallePokeDex, setDetallePokeDex] = useState<any>(undefined);
   const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
@@ -71,20 +69,20 @@ const Card: FC<Props> = ({ pokemon, buscaTipoEnEspanol, colours }) => {
     }
   }, [detalleEspecie]);
 
-  if (!detallePokemon || !detalleEspecie) {
+  if (!detallePokemon || detalleEspecie ) {
     return <h1>cargando</h1>;
   }
 
   const flavorTextEs = detalleEspecie.flavor_text_entries.find(
-    (flavor) => flavor.language.name === "es"
+    (flavor: any) => flavor.language.name === "es"
   ).flavor_text;
 
   const generaTextEs = detalleEspecie.genera.find(
-    (gen) => gen.language.name === "es"
+    (gen: any) => gen.language.name === "es"
   ).genus;
 
-  const pokeDexTextEs = detallePokeDex?.descriptions.find(
-    (des) => des.language.name === "es"
+  const pokeDexTextEs = detallePokeDex?.descriptions?.find(
+    (des: any) => des.language.name === "es"
   ).description;
 
   return (
@@ -114,7 +112,7 @@ const Card: FC<Props> = ({ pokemon, buscaTipoEnEspanol, colours }) => {
           </div>
 
           <div className="relative inset-0 flex place-content-center">
-            {detallePokemon.types.map((type) => (
+            {detallePokemon.types.map((type: any) => (
               <div>
                 <p
                   className={`text-white m-4 text-center font-bold capitalize antialiased text-[20px] 

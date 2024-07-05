@@ -43,8 +43,8 @@ const App = () => {
   const currentPage = offset / limit + 1;
   const pages = Math.floor(count / limit) + 1;
 
-  const [pokemones, setPokemones] = useState(undefined);
-  const [types, setTypes] = useState(undefined);
+  const [pokemones, setPokemones] = useState<any>(undefined);
+  const [types, setTypes] = useState<any>(undefined);
   const [searchField, setSearchField] = useState("");
 
   useEffect(() => {
@@ -65,21 +65,21 @@ const App = () => {
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/type/")
       .then((response) => response.json())
-      .then((data: pokemonTypeProps) => {
-        const requests = data.results.map((result) => fetch(result.url));
+      .then((data: any) => {
+        const requests = data.results.map((result: any) => fetch(result.url));
 
         Promise.all(requests)
           .then((responses) => {
             return Promise.all(responses.map((res) => res.json()));
           })
-          .then((data: pokemonDetalleTypeProps) => {
+          .then((data: any) => {
             setTypes(data);
           });
       });
   }, []);
 
   const pokemonesFiltered =
-    pokemones?.results?.filter((pokemon) =>
+    pokemones?.results?.filter((pokemon: any) =>
       pokemon.name.toLowerCase().includes(searchField.toLowerCase())
     ) ?? [];
   console.log(pokemonesFiltered);
@@ -87,8 +87,8 @@ const App = () => {
   const buscaTipoEnEspanol = (tipo: detallePokemonProps) => {
     if (!types) return "";
     return types
-      .find((type) => type.name === tipo)
-      .names.find((lang) => lang.language.name === "es").name;
+      .find((type:any) => type.name === tipo)
+      .names.find((lang:any) => lang.language.name === "es").name;
   };
 
   return (
@@ -104,7 +104,7 @@ const App = () => {
       </Link>
       <SearchBox
         placeholder="Buscar"
-        handleChange={(e) => setSearchField(e.target.value)}
+        handleChange={(e: any) => setSearchField(e.target.value)}
       />
 
       <Cardlist

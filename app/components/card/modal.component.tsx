@@ -5,6 +5,12 @@ import { indieFlower, margarine, silkscreen } from "@/app/ui/font";
 
 interface Props {
     show: boolean;
+    setShowModal: any;
+detallePokemon: any;
+buscaTipoEnEspanol: any;
+generaTextEs: any;
+flavorTextEs: any;
+pokeDexTextEs: any;
 }
 
 const ModalDetallePokemon:FC<Props> = ({
@@ -82,7 +88,7 @@ const ModalDetallePokemon:FC<Props> = ({
                       </div>
                     </div>
                     <div className="relative inset-0 flex place-content-center">
-                      {types?.map((type) => (
+                      {types?.map((type: any) => (
                         <div>
                           <p
                             className={`text-white m-4 text-center capitalize ${silkscreen.className} antialiased text-[20px] `}

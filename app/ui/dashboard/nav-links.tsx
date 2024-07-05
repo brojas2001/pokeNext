@@ -25,7 +25,6 @@ export default function NavLinks() {
             
             ${pathname === link.href ? 'bg-sky-100 text-blue-600' : ''}`}
           >
-            <LinkIcon className="w-6" />
             <p className="hidden md:block">{link.name}</p>
           </Link>
         );
