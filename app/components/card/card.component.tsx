@@ -69,15 +69,15 @@ const Card: FC<Props> = ({ pokemon, buscaTipoEnEspanol }) => {
     }
   }, [detalleEspecie]);
 
-  if (!detallePokemon || detalleEspecie ) {
+  if (!detallePokemon || !detalleEspecie ) {
     return <h1>cargando</h1>;
   }
 
-  const flavorTextEs = detalleEspecie.flavor_text_entries.find(
+  const flavorTextEs = detalleEspecie?.flavor_text_entries?.find(
     (flavor: any) => flavor.language.name === "es"
   ).flavor_text;
 
-  const generaTextEs = detalleEspecie.genera.find(
+  const generaTextEs = detalleEspecie?.genera?.find(
     (gen: any) => gen.language.name === "es"
   ).genus;
 
