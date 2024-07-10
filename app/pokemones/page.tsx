@@ -48,22 +48,23 @@ const App = () => {
   const [searchField, setSearchField] = useState("");
 
   useEffect(() => {
-    fetch(
-      offset === 144
-        ? `https://pokeapi.co/api/v2/pokemon/?limit=${
-            limit - 2
-          }&offset=${offset}`
-        : `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
-    )
+    fetch("http://localhost:3000/pokemones")
+      // offset === 144
+      //   `https://pokeapi.co/api/v2/pokemon/?limit=${
+      //       limit - 2
+      //     }&offset=${offset}`
+      // :
+      //
       .then((response) => response.json())
       .then((data: pokemonProps) => {
+        console.log(data);
         setPokemones(data);
-        setCount((data.count = 151));
+        // setCount((data));
       });
   }, [offset]);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/type/")
+    fetch("http://localhost:3000/tipos/1")
       .then((response) => response.json())
       .then((data: any) => {
         const requests = data.results.map((result: any) => fetch(result.url));
@@ -78,17 +79,24 @@ const App = () => {
       });
   }, []);
 
+  console.log({ pokemones });
+
+  // const pokemonesFiltered = []
+
   const pokemonesFiltered =
-    pokemones?.results?.filter((pokemon: any) =>
-      pokemon.name.toLowerCase().includes(searchField.toLowerCase())
+    pokemones?.pokemones?.filter((pokemon: any) =>
+      pokemon.results[0].name.toLowerCase().includes(searchField.toLowerCase())
     ) ?? [];
+  // pokemones?.results?.filter((pokemon: any) =>
+  //   pokemon.name.toLowerCase().includes(searchField.toLowerCase())
+  // ) ?? [];
   console.log(pokemonesFiltered);
 
   const buscaTipoEnEspanol = (tipo: detallePokemonProps) => {
     if (!types) return "";
     return types
-      .find((type:any) => type.name === tipo)
-      .names.find((lang:any) => lang.language.name === "es").name;
+      .find((type: any) => type.name === tipo)
+      .names.find((lang: any) => lang.language.name === "es").name;
   };
 
   return (
@@ -111,13 +119,13 @@ const App = () => {
         pokemones={pokemonesFiltered}
         buscaTipoEnEspanol={buscaTipoEnEspanol}
       />
-      <Paginacion
+      {/* <Paginacion
         pages={pages}
         currentPage={currentPage}
         onChange={(page) => {
           setOffset((page - 1) * limit);
         }}
-      />
+      /> */}
     </main>
   );
 };
